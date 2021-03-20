@@ -7,14 +7,22 @@
   --font-secondary: "Roboto Mono", monospace;
 
   /* CONTENT AREA */
-  --max-width: 1400px;
-
+  --max-width: 1200px;
+  --max-width-small: 800px;
   /* COLORS */
   --color-primary: rgba(245, 203, 92, 1);
+
   --color-medium: rgba(240, 69, 66, 1);
+  --color-medium-trans: rgba(240, 69, 66, 0.5);
+  --color-medium-light: rgba(255, 185, 185, 1);
+
   --color-secondary: rgba(20, 32, 62, 1);
+  --color-secondary-trans: rgba(20, 32, 62, 0.5);
+
   --color-dark: rgba(42, 42, 40, 1);
+  --color-dark-footer: rgb(0, 8, 20);
   --color-dark-secondary: rgba(51, 53, 51, 1);
+
   --color-light: rgba(248, 249, 250, 1);
   --color-light-secondary: rgba(233, 236, 239, 1);
   --color-danger: hsl(353, 86%, 56%);
@@ -105,4 +113,57 @@ img {
 
 .my-3 {
   margin: 3rem 0;
+}
+
+.featured-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  background-color: #17141d;
+  color: #f4f4f4;
+}
+
+.card-list {
+  display: flex;
+  padding: 3rem;
+  overflow-x: scroll;
+}
+
+.card-list::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.card-list::-webkit-scrollbar-thumb {
+  background: #201c29;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+    inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.card-list::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, #201c29, #201c29 1px, #17141d 0, #17141d);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.featured {
+  background: var(--color-light-secondary);
+  text-shadow: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-size: 2rem;
+}
+
+.underline {
+  width: 5rem;
+  height: 0.4rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;
 }
