@@ -1,7 +1,8 @@
 import React from "react";
+import Post from "../../components/Posts/Post/Post";
 
 function SinglePost() {
-  return <h1>This is simgle page</h1>;
+  return <Post />;
 }
 
 export default SinglePost;

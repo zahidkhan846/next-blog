@@ -11,7 +11,13 @@
 }
 
 .footerLogo a {
-  color: var(--color-medium-light);
+  color: var(--color-primary);
+  padding: 2px 4px;
+  transition: color 0.3s;
+}
+
+.footerLogo a:hover {
+  color: var(--color-medium);
 }
 
 .footerLogo {
@@ -34,14 +40,13 @@
   width: 100%;
   font: inherit;
   outline: none;
-  border: 1px solid var(--color-primary);
+  border: 1px solid transparent;
   background-color: var(--color-dark-secondary);
   color: var(--color-light-secondary);
-  /* border-radius: 5px; */
 }
 
 .subscription input:focus {
-  border: 1px solid var(--color-medium);
+  outline: none;
 }
 
 .subscription {
@@ -52,16 +57,14 @@
 
 .subscription button {
   display: block;
-  width: 100%;
   margin-top: 0.5rem;
   font: inherit;
-  padding: 0.6rem 0;
+  padding: 0.6rem 1.2rem;
   text-transform: uppercase;
-  /* border-radius: 5px; */
-  background-color: var(--color-medium);
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-dark);
   outline: none;
-  border: 1px solid var(--color-primary);
+  border: 1px solid transparent;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -85,16 +88,16 @@
 
 .icon {
   font-size: 2.5rem !important;
-  color: var(--color-medium-light);
+  color: var(--color-primary);
   transition: all 0.3s ease-in-out !important;
 }
 
 .icon:hover {
-  color: var(--color-primary);
+  color: var(--color-medium);
   transform: scale(1.1);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 568px) {
   .footerContainer {
     flex-direction: column;
     gap: 3rem;
