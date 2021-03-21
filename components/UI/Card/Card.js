@@ -1,12 +1,18 @@
+import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import classes from "./Card.module.css";
 
-function Card({ createdAt, excerpt, author, image, slug, tags }) {
+function Card({ post }) {
+  const newDate = new Date(post.createdAt).toISOString();
+
   return (
     <article className={classes.card}>
       <header className={classes.cardHeader}>
-        <p className={classes.time}>{createdAt}</p>
-        <h2>{excerpt}</h2>
+        <p className={classes.time}>{moment(newDate).format("MMMM Do YYYY")}</p>
+        <h2 className="text-color">
+          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+        </h2>
       </header>
       <div className={classes.cardAuthor}>
         <a href="#!" className={classes.authorAvatar}>
@@ -17,12 +23,15 @@ function Card({ createdAt, excerpt, author, image, slug, tags }) {
         </svg>
         <div className={classes.authorName}>
           <div className={classes.authorNamePrefix}>Auhor</div>
-          {author}
+          {post.author}
         </div>
       </div>
-      <div class={classes.tags}>
-        <a href="#">html</a>
-        <a href="#">css</a>
+      <div className={classes.tags}>
+        {post.tags.map((tag, index) => (
+          <Link key={index} href="/">
+            {tag}
+          </Link>
+        ))}
       </div>
     </article>
   );

@@ -219,3 +219,11 @@ img {
 .font-big {
   font-size: 3rem;
 }
+
+.text-dark a {
+  color: #17141d;
+}
+
+.text-color a {
+  color: var(--color-primary);
+}

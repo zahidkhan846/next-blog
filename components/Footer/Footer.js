@@ -10,7 +10,14 @@ function Footer() {
         <footer className={classes.footerContainer}>
           <div className={classes.footerLogo}>
             <Link href="/">
-              <Image src="/images/logo.png" alt="logo" height={60} width={60} />
+              <a>
+                <Image
+                  src="/images/logo.png"
+                  alt="logo"
+                  height={60}
+                  width={60}
+                />
+              </a>
             </Link>
             <p>
               &copy; {new Date().getFullYear().toString()}{" "}

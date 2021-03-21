@@ -1,25 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import classes from "../Post/Post.module.css";
+import ReactMarkdown from "react-markdown";
 
-const slug = "getting-started-with-next-js";
-const image = "hero.jpg";
-
-const post = {
-  title: "Nest Js the React Framework Slug",
-  slug: "getting-started-with-next-js",
-  createdAt: "January 20 2021",
-  content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
-  quidem. Unde officia ipsa nulla magnam voluptatem vel ut nemo,
-  debitis aut laborum cumque eveniet quod alias obcaecati porro
-  molestiae quibusdam minima veritatis et aliquam non in facere sed!
-  Nemo ipsam deleniti reprehenderit, nesciunt veritatis ullam minus
-  blanditiis consequatur placeat quisquam!`,
-  author: "Zahid Khan",
-  image: `/images/posts/${slug}/${image}`,
-};
-
-function Post() {
+function Post({ post }) {
   return (
     <section>
       <div className="py-2">
@@ -37,7 +21,9 @@ function Post() {
           <p className={classes.time}>
             <span>Posted on</span> {post.createdAt}
           </p>
-          <p className="py-1">{post.content}</p>
+          <p className="py-1">
+            <ReactMarkdown>{post.content}</ReactMarkdown>
+          </p>
           <p className={classes.author}>
             <span>Written by</span> {post.author}
           </p>

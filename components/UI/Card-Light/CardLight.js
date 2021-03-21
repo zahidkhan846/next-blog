@@ -1,14 +1,17 @@
+import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import classes from "./CardLight.module.css";
 
-function CardLight() {
+function CardLight({ post }) {
+  const newDate = new Date(post.createdAt).toISOString();
+
   return (
     <article className={classes.cardLight}>
       <header className={classes.cardLightHeader}>
-        <p className={classes.time}>January 20 2021</p>
-        <h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
-          est.
+        <p className={classes.time}>{moment(newDate).format("MMMM Do YYYY")}</p>
+        <h2 className="text-dark">
+          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
         </h2>
       </header>
       <div className={classes.cardLightAuthor}>
@@ -20,12 +23,15 @@ function CardLight() {
         </svg>
         <div className={classes.authorNameLight}>
           <div className={classes.authorNamePrefixLight}>Auhor</div>
-          Zahid Khan
+          {post.author}
         </div>
       </div>
-      <div class={classes.tagsLight}>
-        <a href="#">html</a>
-        <a href="#">css</a>
+      <div className={classes.tagsLight}>
+        {post.tags.map((tag, index) => (
+          <Link key={index} href="/">
+            {tag}
+          </Link>
+        ))}
       </div>
     </article>
   );

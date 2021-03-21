@@ -1,4 +1,5 @@
 import CardLight from "../../components/UI/Card-Light/CardLight";
+import { posts } from "../../content/data";
 
 function AllPosts() {
   return (
@@ -7,15 +8,8 @@ function AllPosts() {
       <div className="underline"></div>
       <div className="card-list-all-posts">
         <section className="light-card-container">
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
-          <CardLight />
+          {posts &&
+            posts.map((post) => <CardLight key={post.id} post={post} />)}
         </section>
       </div>
     </section>
