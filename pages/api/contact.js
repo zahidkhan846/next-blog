@@ -27,9 +27,7 @@ export default async (req, res) => {
     let client;
 
     try {
-      client = await MongoClient.connect(
-        "mongodb+srv://Zahid:CXAjRkytegMq3pDY@db-cwz.qghn5.mongodb.net/next-blog?retryWrites=true&w=majority"
-      );
+      client = await MongoClient.connect(process.env.MONGODB_URI);
     } catch (error) {
       res.status(500).json({
         message: "Could not connect to the database.",
