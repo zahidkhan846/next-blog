@@ -1,11 +1,14 @@
 import Layout from "../components/Layout/Layout";
+import AlertProvider from "../store/AlertContext";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <AlertProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </AlertProvider>
   );
 }
 

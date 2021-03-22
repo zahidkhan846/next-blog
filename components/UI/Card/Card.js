@@ -5,13 +5,17 @@ import classes from "./Card.module.css";
 
 function Card({ post }) {
   const newDate = new Date(post.createdAt).toISOString();
+  const slug = `${post.id}-${post.title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")}`;
 
   return (
     <article className={classes.card}>
       <header className={classes.cardHeader}>
         <p className={classes.time}>{moment(newDate).format("MMMM Do YYYY")}</p>
         <h2 className="text-color">
-          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+          <Link href={`/posts/${slug}`}>{post.title}</Link>
         </h2>
       </header>
       <div className={classes.cardAuthor}>

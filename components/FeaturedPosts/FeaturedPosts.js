@@ -1,9 +1,7 @@
 import { posts } from "../../content/data";
 import Card from "../UI/Card/Card";
 
-function FeaturedPosts() {
-  const featuredPosts = posts.filter((post) => post.isFeatured);
-
+function FeaturedPosts({ featuredPosts }) {
   return (
     <section className="featured-container">
       <h1 className="py-1 text-center featured">Featured Posts</h1>

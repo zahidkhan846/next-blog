@@ -28,12 +28,13 @@
 }
 
 .formControl {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .formControl label {
   display: block;
   font: inherit;
+  margin-bottom: 3px;
 }
 
 .formControl input,

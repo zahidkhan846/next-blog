@@ -227,3 +227,7 @@ img {
 .text-color a {
   color: var(--color-primary);
 }
+
+.text-color-success {
+  color: var(--color-success);
+}

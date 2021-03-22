@@ -6,12 +6,17 @@ import classes from "./CardLight.module.css";
 function CardLight({ post }) {
   const newDate = new Date(post.createdAt).toISOString();
 
+  const slug = `${post.id}-${post.title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")}`;
+
   return (
     <article className={classes.cardLight}>
       <header className={classes.cardLightHeader}>
         <p className={classes.time}>{moment(newDate).format("MMMM Do YYYY")}</p>
         <h2 className="text-dark">
-          <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+          <Link href={`/posts/${slug}`}>{post.title}</Link>
         </h2>
       </header>
       <div className={classes.cardLightAuthor}>

@@ -1,9 +1,11 @@
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import classes from "../Post/Post.module.css";
-import ReactMarkdown from "react-markdown";
 
 function Post({ post }) {
+  const newDate = new Date(post.createdAt).toISOString();
+
   return (
     <section>
       <div className="py-2">
@@ -15,15 +17,18 @@ function Post({ post }) {
           <h2>{post.title}</h2>
         </div>
         <div>
-          <Image src={post.image} alt="hero" height={300} width={500} />
+          <Image
+            src="/images/posts/hero.jpg"
+            alt="hero"
+            height={300}
+            width={500}
+          />
         </div>
         <div className={classes.singlePostContent}>
           <p className={classes.time}>
-            <span>Posted on</span> {post.createdAt}
+            <span>Posted on</span> {moment(newDate).format("MMMM Do YYYY")}
           </p>
-          <p className="py-1">
-            <ReactMarkdown>{post.content}</ReactMarkdown>
-          </p>
+          <p className="py-1">{post.content}</p>
           <p className={classes.author}>
             <span>Written by</span> {post.author}
           </p>

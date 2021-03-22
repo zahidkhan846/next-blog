@@ -1,8 +1,55 @@
+import { useState } from "react";
+import { useAlert } from "../store/AlertContext";
 import classes from "../styles/contact.module.css";
 
 function Contact() {
-  const handleSubmit = (event) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const { showAlert } = useAlert();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (
+      !email ||
+      !email.includes("@") ||
+      !name ||
+      name.trim() === "" ||
+      !message ||
+      message.trim() === ""
+    ) {
+      return showAlert({ type: "error", desc: "Please provide valid input." });
+    }
+
+    showAlert({ type: "loading", desc: "Sending request to the server." });
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: message,
+      }),
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      showAlert({
+        type: "error",
+        desc: data.message || "Something went wrong.",
+      });
+    } else {
+      showAlert({ type: "success", desc: "Successfully sent." });
+    }
+
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (
@@ -20,11 +67,19 @@ function Contact() {
               type="text"
               id="name"
               placeholder="Enter your full name..."
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div className={classes.formControl}>
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email..." />
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email..."
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
           </div>
           <div className={classes.formControl}>
             <label htmlFor="message">Message</label>
@@ -33,6 +88,8 @@ function Contact() {
               id="message"
               rows="5"
               placeholder="Type your message..."
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
             ></textarea>
           </div>
           <div className={classes.btn}>
