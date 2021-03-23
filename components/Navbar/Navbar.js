@@ -32,6 +32,9 @@ function Navbar() {
               <li>
                 <Link href="/about-me">About Me</Link>
               </li>
+              <li>
+                <Link href="/auth/login">Login</Link>
+              </li>
             </ul>
           </nav>
         </header>

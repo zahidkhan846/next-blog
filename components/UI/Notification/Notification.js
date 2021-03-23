@@ -18,8 +18,8 @@ function Notification({ type, desc }) {
   const styles = `${classes.notification} ${alertStyle}`;
 
   return (
-    <section className={styles}>
-      <article>
+    <section className={classes.alertContainer}>
+      <article className={styles}>
         <h1>{type}</h1>
         <p>{desc}</p>
       </article>

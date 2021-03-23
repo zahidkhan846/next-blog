@@ -1,10 +1,20 @@
+import Head from "next/head";
+import { Fragment } from "react";
 import Post from "../../components/Posts/Post/Post";
 import { findBySlug, posts } from "../../content/data";
 
 function SinglePost(props) {
   const { singlePost } = props;
 
-  return <Post post={singlePost} />;
+  return (
+    <Fragment>
+      <Head>
+        <title>{singlePost.title}</title>
+        <meta name="description" content={singlePost.title} />
+      </Head>
+      <Post post={singlePost} />;
+    </Fragment>
+  );
 }
 
 export const getStaticProps = (context) => {

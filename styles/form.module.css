@@ -2,7 +2,7 @@
   padding: 2rem 0;
 }
 
-.contactForm {
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,11 @@
   padding-bottom: 3rem;
 }
 
-.contactForm form {
+.form h2 {
+  color: var(--color-primary);
+}
+
+.form form {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.5);
@@ -19,11 +23,11 @@
   width: 500px;
 }
 
-.contactForm form h2 {
+.form form h2 {
   font-size: 2rem;
 }
 
-.contactForm form h2 {
+.form form h2 {
   margin-bottom: 1rem;
 }
 
@@ -85,7 +89,7 @@
 }
 
 @media (max-width: 568px) {
-  .contactForm form {
+  .form form {
     width: 400px;
   }
 }

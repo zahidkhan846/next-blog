@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
+    "bcryptjs": "^2.4.3",
     "moment": "^2.29.1",
     "mongodb": "^3.6.5",
     "next": "10.0.9",
+    "next-auth": "^3.13.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }

@@ -1,10 +1,16 @@
+.alertContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .notification {
   width: 400px;
   padding: 2rem;
   position: fixed;
-  color: var(--color-light-secondary);
+  color: rgb(255, 255, 255);
   box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.5);
   border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .success {
@@ -33,5 +39,5 @@
 .notification p {
   font-weight: 500;
   font-size: 18px;
-  line-height: 1;
+  line-height: 1.2;
 }

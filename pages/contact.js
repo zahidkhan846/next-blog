@@ -1,6 +1,7 @@
-import { useState } from "react";
+import Head from "next/head";
+import { Fragment, useState } from "react";
 import { useAlert } from "../store/AlertContext";
-import classes from "../styles/contact.module.css";
+import classes from "../styles/form.module.css";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -53,53 +54,59 @@ function Contact() {
   };
 
   return (
-    <section>
-      <div className={classes.heading}>
-        <h1 className="text-center featured font-big">Contact Me</h1>
-        <div className="underline"></div>
-      </div>
-      <article className={classes.contactForm}>
-        <form onSubmit={handleSubmit}>
-          <h2>Say Hello...</h2>
-          <div className={classes.formControl}>
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter your full name..."
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-          </div>
-          <div className={classes.formControl}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email..."
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </div>
-          <div className={classes.formControl}>
-            <label htmlFor="message">Message</label>
-            <textarea
-              name="message"
-              id="message"
-              rows="5"
-              placeholder="Type your message..."
-              value={message}
-              onChange={(event) => setMessage(event.target.value)}
-            ></textarea>
-          </div>
-          <div className={classes.btn}>
-            <button type="submit" className={classes.submitButton}>
-              Send Message
-            </button>
-          </div>
-        </form>
-      </article>
-    </section>
+    <Fragment>
+      <Head>
+        <title>Contact Me</title>
+        <meta name="description" content="contact page" />
+      </Head>
+      <section>
+        <div className={classes.heading}>
+          <h1 className="text-center featured font-big">Contact Me</h1>
+          <div className="underline"></div>
+        </div>
+        <article className={classes.form}>
+          <form onSubmit={handleSubmit}>
+            <h2>Say Hello...</h2>
+            <div className={classes.formControl}>
+              <label htmlFor="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name..."
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
+            <div className={classes.formControl}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email..."
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
+            <div className={classes.formControl}>
+              <label htmlFor="message">Message</label>
+              <textarea
+                name="message"
+                id="message"
+                rows="5"
+                placeholder="Type your message..."
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+              ></textarea>
+            </div>
+            <div className={classes.btn}>
+              <button type="submit" className={classes.submitButton}>
+                Send Message
+              </button>
+            </div>
+          </form>
+        </article>
+      </section>
+    </Fragment>
   );
 }
 
