@@ -2,12 +2,29 @@ import { useState } from "react";
 import styles from "./Auth.module.css";
 import classes from "../../styles/form.module.css";
 import Link from "next/link";
+import { signIn } from "next-auth/client";
+import { useRouter } from "next/router";
 
 function Login() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {};
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: userEmail,
+      password: userPassword,
+    });
+    setLoading(false);
+    if (res.error === null) {
+      router.push("/posts");
+    }
+  };
 
   return (
     <section>
@@ -40,10 +57,11 @@ function Login() {
           </div>
           <div className={classes.btn}>
             <button
+              disabled={loading}
               type="submit"
               className={`${classes.submitButton} ${styles.loginBtn}`}
             >
-              Send Message
+              {loading ? "Loading..." : "Login"}
             </button>
           </div>
         </form>

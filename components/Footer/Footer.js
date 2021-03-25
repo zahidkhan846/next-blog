@@ -1,9 +1,42 @@
 import { Facebook, GitHub, LinkedIn, Twitter } from "@material-ui/icons";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { useAlert } from "../../store/AlertContext";
 import classes from "./Footer.module.css";
 
 function Footer() {
+  const { showAlert } = useAlert();
+
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/subscription", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showAlert({
+        type: "error",
+        desc: data.message || "Something went wrong!",
+      });
+    } else {
+      showAlert({
+        type: "success",
+        desc: data.message || "Successfully subscribed!",
+      });
+      setEmail("");
+    }
+  };
+
   return (
     <section className={classes.sectionFooter}>
       <div className="container">
@@ -27,9 +60,15 @@ function Footer() {
             </p>
           </div>
           <div className={classes.subscription}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <label htmlFor="email">Type Your Email</label>
-              <input type="email" id="email" placeholder="user@domain.com" />
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                id="email"
+                placeholder="user@domain.com"
+              />
               <button type="submit">Subscribe</button>
             </form>
           </div>

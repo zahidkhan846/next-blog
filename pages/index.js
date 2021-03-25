@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import Contact from "../components/Contact/Contact";
 import FeaturedPosts from "../components/FeaturedPosts/FeaturedPosts";
 import Hero from "../components/Hero/Hero";
-import { posts } from "../content/data";
+import { posts } from "../utils/data";
 
 function HomePage(props) {
   const { featuredPosts } = props;

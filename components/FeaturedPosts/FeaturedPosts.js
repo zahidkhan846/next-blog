@@ -1,4 +1,4 @@
-import { posts } from "../../content/data";
+import { posts } from "../../utils/data";
 import Card from "../UI/Card/Card";
 
 function FeaturedPosts({ featuredPosts }) {

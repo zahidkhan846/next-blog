@@ -2,6 +2,17 @@
   padding: 2rem 0;
 }
 
+.userHeading {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  gap: 0.25rem;
+}
+
+.userHaedingIcon {
+  color: var(--color-success) !important;
+}
+
 .form {
   display: flex;
   justify-content: center;
@@ -73,6 +84,13 @@
   transition: background-color 0.3s;
   background-color: var(--color-primary);
   border-radius: 25px;
+}
+
+.submitButton:disabled {
+  background-color: grey !important;
+  box-shadow: 0 0 0 0 grey !important;
+  opacity: 0.5;
+  cursor: default;
 }
 
 .submitButton:hover {

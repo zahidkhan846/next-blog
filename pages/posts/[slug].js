@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Fragment } from "react";
 import Post from "../../components/Posts/Post/Post";
-import { findBySlug, posts } from "../../content/data";
+import { findBySlug, posts } from "../../utils/data";
 
 function SinglePost(props) {
   const { singlePost } = props;

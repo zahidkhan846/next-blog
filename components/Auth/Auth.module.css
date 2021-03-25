@@ -3,11 +3,6 @@
   color: var(--color-light);
 }
 
-.registerBtn:disabled {
-  background-color: grey !important;
-  box-shadow: none;
-}
-
 .formheading {
   color: var(--color-info) !important;
 }

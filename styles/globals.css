@@ -58,6 +58,7 @@ ul {
 
 button {
   cursor: pointer;
+  font: inherit;
 }
 
 img {
@@ -230,4 +231,11 @@ img {
 
 .text-color-success {
   color: var(--color-success);
+}
+
+.flex-center {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }

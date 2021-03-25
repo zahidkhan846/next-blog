@@ -1,8 +1,25 @@
 import classes from "./Navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+import { ExitToApp } from "@material-ui/icons";
 
 function Navbar() {
+  const [session, loading] = useSession();
+
+  const router = useRouter();
+
+  const logoutHandler = async () => {
+    const data = await signOut({
+      callbackUrl: "http://localhost:3000",
+      redirect: false,
+    });
+
+    router.push(data.url);
+  };
+  console.log(session);
+
   return (
     <section className={classes.navbar}>
       <div className="container">
@@ -29,12 +46,26 @@ function Navbar() {
               <li>
                 <Link href="/contact">Contact</Link>
               </li>
-              <li>
-                <Link href="/about-me">About Me</Link>
-              </li>
-              <li>
-                <Link href="/auth/login">Login</Link>
-              </li>
+              {session ? (
+                <li>
+                  <Link href="/auth/user-profile">Profile</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link href="/about">About</Link>
+                </li>
+              )}
+              {!session && !loading ? (
+                <li>
+                  <Link href="/auth/login">Login</Link>
+                </li>
+              ) : (
+                <li>
+                  <button onClick={logoutHandler}>
+                    <ExitToApp color="inherit" />
+                  </button>
+                </li>
+              )}
             </ul>
           </nav>
         </header>

@@ -3,6 +3,7 @@ import styles from "./Auth.module.css";
 import classes from "../../styles/form.module.css";
 import Link from "next/link";
 import { useAlert } from "../../store/AlertContext";
+import { useRouter } from "next/router";
 
 function Register() {
   const [userName, setUserName] = useState("");
@@ -12,6 +13,8 @@ function Register() {
   const [loading, setLoading] = useState(false);
 
   const { showAlert } = useAlert();
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +45,7 @@ function Register() {
         type: "error",
         desc: data.message || "Something went wrong.",
       });
+      setLoading(false);
     } else {
       showAlert({
         type: "success",
@@ -51,6 +55,8 @@ function Register() {
       setUserEmail("");
       setUserPassword("");
       setUserConfirmPassword("");
+      router.push("/auth/login");
+      setLoading(false);
     }
     setLoading(false);
   };

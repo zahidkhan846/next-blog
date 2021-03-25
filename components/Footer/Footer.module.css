@@ -10,6 +10,10 @@
   justify-content: space-between;
 }
 
+.footerLogo p {
+  color: var(--color-primary);
+}
+
 .footerLogo a {
   color: var(--color-primary);
   padding: 2px 4px;
@@ -33,6 +37,7 @@
 .subscription label {
   display: block;
   margin-bottom: 3px;
+  color: var(--color-primary);
 }
 
 .subscription input {

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { Fragment } from "react";
-import CardLight from "../../components/UI/Card-Light/CardLight";
-import { posts } from "../../content/data";
+import Posts from "../../components/Posts/Posts";
+import { posts } from "../../utils/data";
 
 function AllPosts(props) {
   const { allPosts } = props;
@@ -15,17 +15,7 @@ function AllPosts(props) {
           content="a list of all pragramming reated content."
         />
       </Head>
-      <section className="all-posts-container">
-        <h1 className="py-1 text-center featured">All Posts</h1>
-        <div className="underline"></div>
-        <div className="card-list-all-posts">
-          <section className="light-card-container">
-            {allPosts.map((post) => (
-              <CardLight key={post.id} post={post} />
-            ))}
-          </section>
-        </div>
-      </section>
+      <Posts allPosts={allPosts} />
     </Fragment>
   );
 }
