@@ -7,8 +7,6 @@ export default async (req, res) => {
 
   const { email } = req.body;
 
-  console.log(email);
-
   if (!email || !email.includes("@")) {
     res.status(422).json({
       message: "Invalid email.",

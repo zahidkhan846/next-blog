@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head></Head>
         <body>
+          <div id="portal"></div>
           <Main />
           <NextScript />
         </body>

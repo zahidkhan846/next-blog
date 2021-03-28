@@ -18,7 +18,6 @@ function Navbar() {
 
     router.push(data.url);
   };
-  console.log(session);
 
   return (
     <section className={classes.navbar}>
@@ -55,7 +54,7 @@ function Navbar() {
                   <Link href="/about">About</Link>
                 </li>
               )}
-              {!session && !loading ? (
+              {!session ? (
                 <li>
                   <Link href="/auth/login">Login</Link>
                 </li>

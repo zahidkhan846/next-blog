@@ -6,10 +6,10 @@ import classes from "./CardLight.module.css";
 function CardLight({ post }) {
   const newDate = new Date(post.createdAt).toISOString();
 
-  const slug = `${post.id}-${post.title
+  const slug = `${post.title
     .toLowerCase()
     .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "")}`;
+    .replace(/[^\w-]+/g, "")}?id=${post._id}`;
 
   return (
     <article className={classes.cardLight}>

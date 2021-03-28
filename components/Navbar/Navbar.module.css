@@ -75,7 +75,7 @@
   color: var(--color-medium);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .header {
     flex-direction: column;
     height: auto;

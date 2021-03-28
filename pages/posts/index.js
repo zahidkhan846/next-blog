@@ -1,11 +1,8 @@
 import Head from "next/head";
 import { Fragment } from "react";
 import Posts from "../../components/Posts/Posts";
-import { posts } from "../../utils/data";
 
-function AllPosts(props) {
-  const { allPosts } = props;
-
+function AllPosts() {
   return (
     <Fragment>
       <Head>
@@ -15,19 +12,9 @@ function AllPosts(props) {
           content="a list of all pragramming reated content."
         />
       </Head>
-      <Posts allPosts={allPosts} />
+      <Posts />
     </Fragment>
   );
-}
-
-export function getStaticProps() {
-  const allPosts = posts;
-
-  return {
-    props: {
-      allPosts,
-    },
-  };
 }
 
 export default AllPosts;
