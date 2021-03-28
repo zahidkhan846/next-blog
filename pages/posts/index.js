@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Fragment } from "react";
 import Posts from "../../components/Posts/Posts";
 
-function AllPosts() {
+function AllPosts(props) {
   return (
     <Fragment>
       <Head>
@@ -12,9 +12,24 @@ function AllPosts() {
           content="a list of all pragramming reated content."
         />
       </Head>
-      <Posts />
+      <Posts posts={props.data.posts} />
     </Fragment>
   );
+}
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:3000/api/posts/get-posts`);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { data },
+  };
 }
 
 export default AllPosts;

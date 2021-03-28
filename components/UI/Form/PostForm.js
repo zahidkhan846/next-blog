@@ -1,12 +1,10 @@
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import { Button, Checkbox } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 import { FormControlLabel, FormGroup } from "@material-ui/core";
 import React, { useState } from "react";
 import classes from "./PostForm.module.css";
 import ReactDOM from "react-dom";
-import { PhotoCamera } from "@material-ui/icons";
 import ClearIcon from "@material-ui/icons/Clear";
-import SendIcon from "@material-ui/icons/Send";
 import { useAlert } from "../../../store/AlertContext";
 
 const theme = createMuiTheme({
@@ -273,19 +271,13 @@ export default function PostForm({ closeModal }) {
                 />
               </FormGroup>
             </div>
-            <div className={classes.file}>
+            <div>
               <input type="file" name="file" id="file" onChange={handleImage} />
             </div>
             <div className={classes.btnContainer}>
-              <Button
-                disabled={loading}
-                endIcon={<SendIcon />}
-                type="submit"
-                variant="contained"
-                color="primary"
-              >
+              <button type="submit" disabled={loading}>
                 Add Post
-              </Button>
+              </button>
             </div>
           </form>
         </article>

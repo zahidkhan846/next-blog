@@ -3,10 +3,11 @@ import { Fragment } from "react";
 import Contact from "../components/Contact/Contact";
 import FeaturedPosts from "../components/FeaturedPosts/FeaturedPosts";
 import Hero from "../components/Hero/Hero";
-import { posts } from "../utils/data";
 
 function HomePage(props) {
-  const { featuredPosts } = props;
+  const { data } = props;
+
+  const featuredPosts = data.posts.filter((post) => post.isFeatured);
 
   return (
     <Fragment>
@@ -24,13 +25,18 @@ function HomePage(props) {
   );
 }
 
-export function getStaticProps() {
-  const featuredPosts = posts.filter((post) => post.isFeatured);
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:3000/api/posts/get-posts`);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
-    props: {
-      featuredPosts,
-    },
+    props: { data },
   };
 }
 export default HomePage;

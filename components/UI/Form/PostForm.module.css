@@ -133,8 +133,7 @@
 }
 
 .formInput label,
-.checkBoxes label,
-.btnContainer label {
+.checkBoxes label {
   display: block;
   font-family: var(--font-secondary);
 }
@@ -156,7 +155,6 @@
 
 .btnContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -181,7 +179,7 @@
     z-index: 8;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 400px;
     top: 100%;
   }
 }
