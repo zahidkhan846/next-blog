@@ -7,6 +7,8 @@ import ReactDOM from "react-dom";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useAlert } from "../../../store/AlertContext";
 import { Camera, Send } from "@material-ui/icons";
+import { uploadFile } from "../../../utils/helperFunctions";
+import Label from "./Label";
 
 const theme = createMuiTheme({
   palette: {
@@ -15,8 +17,10 @@ const theme = createMuiTheme({
   },
 });
 
-export default function PostForm({ closeModal }) {
+export default function PostForm({ closeModal, post }) {
   const { showAlert } = useAlert();
+
+  let editMode;
 
   const [state, setState] = useState({
     html: false,
@@ -37,6 +41,20 @@ export default function PostForm({ closeModal }) {
   const [loading, setLoading] = useState(false);
   const [postImage, setPostImage] = useState("");
 
+  if (post) {
+    editMode = true;
+    const {
+      author,
+      code,
+      content,
+      cretedAt,
+      imageUrl,
+      isFeatured,
+      tags,
+      _id,
+    } = post;
+  }
+
   const handleImage = (e) => {
     const file = e.target.files[0];
     setPostImage(file);
@@ -46,29 +64,10 @@ export default function PostForm({ closeModal }) {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
-  const uploadFile = async () => {
-    const formData = new FormData();
-    formData.append("file", postImage);
-    formData.append("upload_preset", "next-blog");
-    formData.append("cloud_name", "zahidkhan");
-
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/zahidkhan/image/upload",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-
-    const data = await res.json();
-
-    return data;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const imageData = await uploadFile();
+    const imageData = await uploadFile(postImage);
 
     setLoading(false);
 
@@ -91,8 +90,14 @@ export default function PostForm({ closeModal }) {
       imageUrl: imageData.url,
     };
 
+    let METHOD = "POST";
+
+    if (editMode) {
+      METHOD = "PATCH";
+    }
+
     const res = await fetch("/api/posts/add-post", {
-      method: "POST",
+      method: METHOD,
       headers: {
         "Content-Type": "application/json",
       },
@@ -171,88 +176,7 @@ export default function PostForm({ closeModal }) {
             </div>
             <div className={classes.checkBoxes}>
               <label htmlFor="tags">What is this Post about</label>
-              <FormGroup row>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.html}
-                      onChange={handleChange}
-                      name="html"
-                    />
-                  }
-                  label="HTML"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.css}
-                      onChange={handleChange}
-                      name="css"
-                    />
-                  }
-                  label="CSS"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.js}
-                      onChange={handleChange}
-                      name="js"
-                    />
-                  }
-                  label="JS"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.react}
-                      onChange={handleChange}
-                      name="react"
-                    />
-                  }
-                  label="React Js"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.gatsby}
-                      onChange={handleChange}
-                      name="gatsby"
-                    />
-                  }
-                  label="Gatsby JS"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.node}
-                      onChange={handleChange}
-                      name="node"
-                    />
-                  }
-                  label="Node Js"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.next}
-                      onChange={handleChange}
-                      name="next"
-                    />
-                  }
-                  label="Next Js"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={state.other}
-                      onChange={handleChange}
-                      name="other"
-                    />
-                  }
-                  label="Other"
-                />
-              </FormGroup>
+              <Label state={state} handleChange={handleChange} />
             </div>
             <div className={classes.checkBoxes}>
               <label htmlFor="featured">

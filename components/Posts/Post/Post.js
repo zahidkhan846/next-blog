@@ -52,9 +52,11 @@ function Post({ post }) {
             {moment(post.createAt).format("MMMM Do YYYY")}
           </p>
           <p className="py-1">{post.content}</p>
-          <SyntaxHighlither language={langStyle} style={atomDark}>
-            {post.code}
-          </SyntaxHighlither>
+          {post.code && (
+            <SyntaxHighlither language={langStyle} style={atomDark}>
+              {post.code}
+            </SyntaxHighlither>
+          )}
           <p className={classes.author}>
             <span>Written by</span> {post.author}
           </p>

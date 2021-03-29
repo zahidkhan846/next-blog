@@ -45,7 +45,7 @@ function Profile({ session }) {
   };
 
   return (
-    <section>
+    <section className={classes.userProfile}>
       <div className={classes.userHeading}>
         <VerifiedUserIcon
           className={classes.userHaedingIcon}
