@@ -1,9 +1,21 @@
 import { MongoClient } from "mongodb";
+import { getSession } from "next-auth/client";
 
 export default async (req, res) => {
   if (req.method !== "POST") {
     return;
   }
+
+  const session = await getSession({ req: req });
+
+  if (!session) {
+    res.status(401).json({
+      message: "Not authenticated!",
+    });
+    return;
+  }
+
+  const userEmail = session.user.email;
 
   const {
     title,
@@ -34,6 +46,11 @@ export default async (req, res) => {
     return;
   }
 
+  const slug = `${title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")}`;
+
   const newPost = {
     title: title,
     author: author,
@@ -43,6 +60,8 @@ export default async (req, res) => {
     isFeatured: isFeatured,
     createdAt: createdAt,
     imageUrl: imageUrl,
+    slug: slug,
+    userEmail: userEmail,
   };
 
   let client;

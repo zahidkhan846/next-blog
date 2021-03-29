@@ -1,22 +1,28 @@
+import { Delete } from "@material-ui/icons";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./CardLight.module.css";
 
 function CardLight({ post }) {
-  const newDate = new Date(post.createdAt).toISOString();
+  const handleDelete = async () => {
+    const res = await fetch(`/api/posts/${post._id}`, {
+      method: "DELETE",
+    });
 
-  const slug = `${post.title
-    .toLowerCase()
-    .replace(/ /g, "-")
-    .replace(/[^\w-]+/g, "")}?id=${post._id}`;
+    const data = await res.json();
+
+    console.log(data);
+  };
 
   return (
     <article className={classes.cardLight}>
       <header className={classes.cardLightHeader}>
-        <p className={classes.time}>{moment(newDate).format("MMMM Do YYYY")}</p>
+        <p className={classes.time}>
+          {moment(post.createdAt).format("MMMM Do YYYY")}
+        </p>
         <h2 className="text-dark">
-          <Link href={`/posts/${slug}`}>{post.title}</Link>
+          <Link href={`/posts/${post._id}`}>{post.title}</Link>
         </h2>
       </header>
       <div className={classes.cardLightAuthor}>
@@ -37,6 +43,11 @@ function CardLight({ post }) {
             {tag}
           </Link>
         ))}
+      </div>
+      <div className={classes.deleteSection}>
+        <button onClick={handleDelete}>
+          <Delete color="inherit" />
+        </button>
       </div>
     </article>
   );

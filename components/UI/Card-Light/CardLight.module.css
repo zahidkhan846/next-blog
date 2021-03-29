@@ -128,3 +128,25 @@
   background-clip: text;
   border-color: var(--color-medium-light);
 }
+
+.deleteSection {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.deleteSection button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: salmon;
+  transition: color 0.2s, transform 0.3s;
+}
+
+.deleteSection button:hover {
+  color: red;
+}
+
+.deleteSection button:active {
+  transform: scale(0.9);
+}

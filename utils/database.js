@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 export const dbConnect = async () => {
   const client = await MongoClient.connect(process.env.MONGODB_URI);
@@ -16,4 +16,12 @@ export const getDocuments = async (client, collection, sort) => {
   const db = client.db();
   const docs = await db.collection(collection).find().sort(sort).toArray();
   return docs;
+};
+
+export const getSingleDocument = async (client, collection, id) => {
+  const db = client.db();
+  const doc = await db
+    .collection(collection)
+    .findOne({ _id: new ObjectId(id) });
+  return doc;
 };

@@ -153,12 +153,6 @@
   box-shadow: 0 0 0.5rem rgba(17, 214, 155, 0.5);
 }
 
-.btnContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @media (max-width: 550px) {
   .addPost {
     width: 400px;
@@ -182,4 +176,55 @@
     height: 400px;
     top: 100%;
   }
+}
+
+.fileAddBtn {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.fileInputContainer label,
+.addPostBtn {
+  display: block;
+  position: relative;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  transition: transform 0.3s;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.flexItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 8px;
+}
+
+.fileInputContainer label:hover,
+.addPostBtn:hover {
+  transform: scale(1.025);
+}
+
+.fileInputContainer label:active,
+.addPostBtn:active {
+  transform: scale(0.925);
 }

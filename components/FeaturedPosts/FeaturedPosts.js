@@ -1,4 +1,3 @@
-import { posts } from "../../utils/data";
 import Card from "../UI/Card/Card";
 
 function FeaturedPosts({ featuredPosts }) {
@@ -8,7 +7,7 @@ function FeaturedPosts({ featuredPosts }) {
       <div className="underline"></div>
       <div className="card-list">
         {featuredPosts &&
-          featuredPosts.map((post) => <Card key={post.id} post={post} />)}
+          featuredPosts.map((post) => <Card key={post._id} post={post} />)}
       </div>
     </section>
   );

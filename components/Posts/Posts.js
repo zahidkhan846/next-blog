@@ -32,9 +32,8 @@ function Posts({ posts }) {
       {showModal && <PostForm closeModal={closeModal} />}
       <div className="card-list-all-posts">
         <section className="light-card-container">
-          {posts.map((post) => (
-            <CardLight key={post._id} post={post} />
-          ))}
+          {posts &&
+            posts.map((post) => <CardLight key={post._id} post={post} />)}
         </section>
       </div>
     </section>

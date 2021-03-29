@@ -6,6 +6,7 @@ import classes from "./PostForm.module.css";
 import ReactDOM from "react-dom";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useAlert } from "../../../store/AlertContext";
+import { Camera, Send } from "@material-ui/icons";
 
 const theme = createMuiTheme({
   palette: {
@@ -271,13 +272,29 @@ export default function PostForm({ closeModal }) {
                 />
               </FormGroup>
             </div>
-            <div>
-              <input type="file" name="file" id="file" onChange={handleImage} />
-            </div>
-            <div className={classes.btnContainer}>
-              <button type="submit" disabled={loading}>
-                Add Post
-              </button>
+            <div className={classes.buttons}>
+              <div className={classes.fileInputContainer}>
+                <label htmlFor="file" className={classes.flexItem}>
+                  <span>Pick File </span>
+                  <Camera />
+                </label>
+                <input
+                  className={classes.fileAddBtn}
+                  type="file"
+                  name="file"
+                  id="file"
+                  onChange={handleImage}
+                />
+              </div>
+              <div>
+                <button
+                  className={`${classes.addPostBtn} ${classes.flexItem}`}
+                  type="submit"
+                  disabled={loading}
+                >
+                  <span>Save</span> <Send />
+                </button>
+              </div>
             </div>
           </form>
         </article>
