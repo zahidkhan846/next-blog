@@ -3,7 +3,7 @@ import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useState } from "react";
-import PostForm from "../Form/PostForm";
+import EditPost from "../Form/EditPost";
 import classes from "./CardLight.module.css";
 import { useSession } from "next-auth/client";
 
@@ -30,14 +30,18 @@ function CardLight({ post }) {
     setShowModal(false);
   };
 
+  let date = post.createdAt;
+
+  if (post.updatedAt) {
+    date = post.updatedAt;
+  }
+
   return (
     <Fragment>
-      {showModal && <PostForm closeModal={closeModal} post={post} />}
+      {showModal && <EditPost closeModal={closeModal} post={post} />}
       <article className={classes.cardLight}>
         <header className={classes.cardLightHeader}>
-          <p className={classes.time}>
-            {moment(post.createdAt).format("MMMM Do YYYY")}
-          </p>
+          <p className={classes.time}>{moment(date).format("MMMM Do YYYY")}</p>
           <h2 className="text-dark">
             <Link href={`/posts/${post._id}`}>{post.title}</Link>
           </h2>

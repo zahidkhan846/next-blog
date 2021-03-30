@@ -170,7 +170,11 @@ img {
 }
 
 .all-posts-container {
-  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 0 1rem;
   color: var(--color-dark);
@@ -187,11 +191,18 @@ img {
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
-  padding-bottom: 3rem;
+  width: 100%;
+  height: 100%;
+  padding: 3rem 0;
 }
 
-@media (max-width: 568px) {
+@media (max-width: 1200px) {
+  .light-card-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 3rem;
+  }
+}
+@media (max-width: 768px) {
   .light-card-container {
     grid-template-columns: 1fr;
     padding: 2rem;

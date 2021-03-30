@@ -17,7 +17,7 @@ const theme = createMuiTheme({
   },
 });
 
-export default function PostForm({ closeModal, post }) {
+export default function EditPost({ closeModal, post }) {
   const { showAlert } = useAlert();
 
   const [state, setState] = useState({
@@ -48,10 +48,15 @@ export default function PostForm({ closeModal, post }) {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
+  console.log(post.tags);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const imageData = await uploadFile(postImage);
+    let imageData;
+    if (postImage) {
+      imageData = await uploadFile(postImage);
+    }
 
     setLoading(false);
 
@@ -64,18 +69,19 @@ export default function PostForm({ closeModal, post }) {
     }
 
     const postBody = {
-      title: title,
-      author: author,
-      content: content,
-      code: code,
-      tags: checkedItems,
-      isFeatured: isFeatured,
-      createdAt: new Date().toISOString(),
-      imageUrl: imageData.url,
+      editedTitle: title || post.title,
+      editedAuthor: author || post.author,
+      editedContent: content || post.content,
+      editedCode: code || post.code,
+      editedTags: (checkedItems.length > 0 && checkedItems) || post.tags,
+      editedIsFeatured: isFeatured || post.isFeatured,
+      updatedAt: new Date().toISOString(),
+      createdAt: post.createdAt,
+      editedImageUrl: `${postImage ? imageData.url : post.imageUrl}`,
     };
 
-    const res = await fetch("/api/posts/add-post", {
-      method: "POST",
+    const res = await fetch(`/api/posts/${post._id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },

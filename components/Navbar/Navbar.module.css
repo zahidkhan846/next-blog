@@ -75,7 +75,7 @@
   color: var(--color-medium);
 }
 
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   .header {
     flex-direction: column;
     height: auto;
@@ -85,5 +85,15 @@
 
   .navLinks li a {
     padding: 0.6rem 0.5rem;
+  }
+}
+@media (max-width: 450px) {
+  .header {
+    padding: 1.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .navLinks li a {
+    padding: 0.6rem 0rem;
   }
 }
