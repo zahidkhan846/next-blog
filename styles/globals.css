@@ -7,6 +7,7 @@
   --font-secondary: "Roboto Mono", monospace;
 
   /* CONTENT AREA */
+  --max-width-big: 1400px;
   --max-width: 1200px;
   --max-width-small: 800px;
   /* COLORS */
