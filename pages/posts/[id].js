@@ -1,9 +1,11 @@
 import Head from "next/head";
 import { Fragment } from "react";
+import safeJsonStringify from "safe-json-stringify";
 import Post from "../../components/Posts/Post/Post";
+import { dbConnect, getSingleDocument } from "../../utils/database";
 
 function SinglePost(props) {
-  const { post } = props.data;
+  const { post } = props;
 
   return (
     <Fragment>
@@ -21,14 +23,22 @@ export const getServerSideProps = async (context) => {
 
   const { id } = params;
 
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`);
+  const client = await dbConnect();
 
-  const data = await res.json();
+  const doc = await getSingleDocument(client, "posts", id);
+
+  const jsonDoc = safeJsonStringify(doc);
+
+  const post = JSON.parse(jsonDoc);
+
+  if (!doc) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
-    props: {
-      data,
-    },
+    props: { post },
   };
 };
 
